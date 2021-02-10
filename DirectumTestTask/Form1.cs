@@ -48,19 +48,28 @@ namespace DirectumTestTask
                     string[] temp = line.Split('\t');
                     if (temp[0] == "Климов Сергей Александрович")
                     {
-                        rkkList.Add(new Executor(temp[1].Split(';')[0].Replace("(Отв.)", "").Trim()));
+                        string[] fields = temp[1].Replace("(Отв.)", "").Split();
+                        string lastname = fields[0];
+                        string[] test = fields[1].Split('.');
+                        string name = test[0];
+                        string patronymic = test[1];
+                        rkkList.Add(new Executor(name, lastname, patronymic));
                     }
                     else
                     {
-                        rkkList.Add(new Executor(temp[0]));
+                        string[] fields = temp[0].Split();
+                        string lastname = fields[0];
+                        string name = fields[1];
+                        string patronymic = fields[2];
+                        rkkList.Add(new Executor(name, lastname, patronymic));
                     }
                 }
             }
-            var rkkResult = rkkList.GroupBy(executor => executor.Name)
+            var rkkResult = rkkList.GroupBy(executor => executor.InitialsFullName)
                 .Select(group => new { Name = group.Key, Count = group.Count() })
                 .OrderByDescending(executor => executor.Count);
 
-            int index = 0;
+            int index = 1;
 
             foreach (var executor in rkkResult)
             {
