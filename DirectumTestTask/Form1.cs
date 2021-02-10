@@ -2,8 +2,6 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Linq;
 
 namespace DirectumTestTask
@@ -38,42 +36,27 @@ namespace DirectumTestTask
 
         private void Run_BTN_Click(object sender, EventArgs e)
         {
-            List<Executor> rkkList = new List<Executor>();
+            List<Executor> rkkList = Parser.Parse(RkkOpenFileDialog.FileName);
+            List<Executor> appealList = Parser.Parse(AppealOpenFileDialog.FileName);
 
-            using (StreamReader sr = new StreamReader(RkkOpenFileDialog.FileName))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] temp = line.Split('\t');
-                    if (temp[0] == "Климов Сергей Александрович")
-                    {
-                        string[] fields = temp[1].Replace("(Отв.)", "").Split();
-                        string lastname = fields[0];
-                        string[] test = fields[1].Split('.');
-                        string name = test[0];
-                        string patronymic = test[1];
-                        rkkList.Add(new Executor(name, lastname, patronymic));
-                    }
-                    else
-                    {
-                        string[] fields = temp[0].Split();
-                        string lastname = fields[0];
-                        string name = fields[1];
-                        string patronymic = fields[2];
-                        rkkList.Add(new Executor(name, lastname, patronymic));
-                    }
-                }
-            }
-            var rkkResult = rkkList.GroupBy(executor => executor.InitialsFullName)
-                .Select(group => new { Name = group.Key, Count = group.Count() })
-                .OrderByDescending(executor => executor.Count);
+            var rkkResult = rkkList
+                .GroupBy(executor => executor.InitialsFullName)
+                .Select(group => new { Name = group.Key, Count = group.Count(), SecondCount = 0 });
+
+            var appealResult = appealList
+                .GroupBy(executor => executor.InitialsFullName)
+                .Select(group => new { Name = group.Key, Count = 0, SecondCount = group.Count() });
+
+            var result = rkkResult
+                .Concat(appealResult)
+                .GroupBy(executor => executor.Name)
+                .Select(group => new { Name = group.Key, Count = group.Sum(item => item.Count), SecondCount = group.Sum(item => item.SecondCount) });
 
             int index = 1;
 
-            foreach (var executor in rkkResult)
+            foreach (var executor in result)
             {
-                dataGridView1.Rows.Add(index++, executor.Name, executor.Count, "");
+                dataGridView1.Rows.Add(index++, executor.Name, executor.Count, executor.SecondCount, executor.Count + executor.SecondCount);
             }
         }
     }

@@ -1,31 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DirectumTestTask
 {
     class Executor
     {
-        private string name;
-        private string lastname;
-        private string patronymic;
+        private string Name { get; }
 
-        public Executor(string name, string lastname, string patronymic)
+        private string Surname { get; }
+
+        private string Patronymic { get; }
+
+        public Executor(string name, string surname, string patronymic)
         {
-            this.name = name;
-            this.lastname = lastname;
-            this.patronymic = patronymic;
+            this.Name = name;
+            this.Surname = surname;
+            this.Patronymic = patronymic;
         }
 
-        public string Name => name;
-
-        public string Lastname => lastname;
-
-        public string Patronymic => patronymic;
-
-        public string InitialsFullName
-        {
-            get { return String.Join(" ", lastname, name[0], patronymic[0]); }
-        }
+        public string InitialsFullName => String.Join(" ", Surname, Name[0], Patronymic[0]);
     }
 }
