@@ -78,8 +78,25 @@ namespace DirectumTestTask
 
         private void UploadReport_BTN_Click(object sender, EventArgs e)
         {
-            List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
-            TextReporter.Report(result);         
+            try
+            {
+                if (RkkOpenFileDialog.FileName == String.Empty)
+                {
+                    throw new Exception("Выберите РКК файл");
+                }
+
+                if (AppealOpenFileDialog.FileName == String.Empty)
+                {
+                    throw new Exception("Выберите файл с обращениями");
+                }
+
+                List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+                TextReporter.Report(result);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
     }
 }

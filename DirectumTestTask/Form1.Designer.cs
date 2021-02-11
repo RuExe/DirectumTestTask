@@ -37,17 +37,17 @@ namespace DirectumTestTask
             this.Rkk_BTN = new System.Windows.Forms.Button();
             this.Appeal_BTN = new System.Windows.Forms.Button();
             this.RkkOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.responsible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.outstandingDocumentsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.outstandingRequestsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Run_BTN = new System.Windows.Forms.Button();
             this.UploadReport_BTN = new System.Windows.Forms.Button();
             this.AppealOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.label3 = new System.Windows.Forms.Label();
             this.TaskTime_TB = new System.Windows.Forms.TextBox();
+            this.totalCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.outstandingRequestsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.outstandingDocumentsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.responsible = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,67 +111,6 @@ namespace DirectumTestTask
             // 
             this.RkkOpenFileDialog.Filter = "Текстовые файлы(*.txt)|*.txt";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.number,
-            this.responsible,
-            this.outstandingDocumentsCount,
-            this.outstandingRequestsCount,
-            this.totalCount});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 72);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(656, 508);
-            this.dataGridView1.TabIndex = 6;
-            // 
-            // number
-            // 
-            this.number.HeaderText = "№ п.п.";
-            this.number.Name = "number";
-            this.number.ReadOnly = true;
-            this.number.Width = 45;
-            // 
-            // responsible
-            // 
-            this.responsible.HeaderText = "Ответственный исполнитель";
-            this.responsible.Name = "responsible";
-            this.responsible.ReadOnly = true;
-            this.responsible.Width = 152;
-            // 
-            // outstandingDocumentsCount
-            // 
-            this.outstandingDocumentsCount.HeaderText = "Количество неисполненных входящих документов";
-            this.outstandingDocumentsCount.Name = "outstandingDocumentsCount";
-            this.outstandingDocumentsCount.ReadOnly = true;
-            this.outstandingDocumentsCount.Width = 151;
-            // 
-            // outstandingRequestsCount
-            // 
-            this.outstandingRequestsCount.HeaderText = "Количество неисполненных письменных обращений граждан";
-            this.outstandingRequestsCount.Name = "outstandingRequestsCount";
-            this.outstandingRequestsCount.ReadOnly = true;
-            this.outstandingRequestsCount.Width = 152;
-            // 
-            // totalCount
-            // 
-            this.totalCount.HeaderText = "Общее количество документов и обращений";
-            this.totalCount.Name = "totalCount";
-            this.totalCount.ReadOnly = true;
-            this.totalCount.Width = 152;
-            // 
             // Run_BTN
             // 
             this.Run_BTN.Location = new System.Drawing.Point(541, 13);
@@ -213,6 +152,67 @@ namespace DirectumTestTask
             this.TaskTime_TB.Size = new System.Drawing.Size(97, 20);
             this.TaskTime_TB.TabIndex = 10;
             // 
+            // totalCount
+            // 
+            this.totalCount.HeaderText = "Общее количество документов и обращений";
+            this.totalCount.Name = "totalCount";
+            this.totalCount.ReadOnly = true;
+            this.totalCount.Width = 152;
+            // 
+            // outstandingRequestsCount
+            // 
+            this.outstandingRequestsCount.HeaderText = "Количество неисполненных письменных обращений граждан";
+            this.outstandingRequestsCount.Name = "outstandingRequestsCount";
+            this.outstandingRequestsCount.ReadOnly = true;
+            this.outstandingRequestsCount.Width = 152;
+            // 
+            // outstandingDocumentsCount
+            // 
+            this.outstandingDocumentsCount.HeaderText = "Количество неисполненных входящих документов";
+            this.outstandingDocumentsCount.Name = "outstandingDocumentsCount";
+            this.outstandingDocumentsCount.ReadOnly = true;
+            this.outstandingDocumentsCount.Width = 151;
+            // 
+            // responsible
+            // 
+            this.responsible.HeaderText = "Ответственный исполнитель";
+            this.responsible.Name = "responsible";
+            this.responsible.ReadOnly = true;
+            this.responsible.Width = 152;
+            // 
+            // number
+            // 
+            this.number.HeaderText = "№ п.п.";
+            this.number.Name = "number";
+            this.number.ReadOnly = true;
+            this.number.Width = 45;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.number,
+            this.responsible,
+            this.outstandingDocumentsCount,
+            this.outstandingRequestsCount,
+            this.totalCount});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 72);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(656, 508);
+            this.dataGridView1.TabIndex = 6;
+            // 
             // Result_DGV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,17 +247,17 @@ namespace DirectumTestTask
         private System.Windows.Forms.Button Rkk_BTN;
         private System.Windows.Forms.Button Appeal_BTN;
         private System.Windows.Forms.OpenFileDialog RkkOpenFileDialog;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn responsible;
-        private System.Windows.Forms.DataGridViewTextBoxColumn outstandingDocumentsCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn outstandingRequestsCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalCount;
         private System.Windows.Forms.Button Run_BTN;
         private System.Windows.Forms.Button UploadReport_BTN;
         private System.Windows.Forms.OpenFileDialog AppealOpenFileDialog;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TaskTime_TB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn outstandingRequestsCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn outstandingDocumentsCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn responsible;
+        private System.Windows.Forms.DataGridViewTextBoxColumn number;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
