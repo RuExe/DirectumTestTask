@@ -1,13 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DirectumTestTask
 {
     public partial class Result_DGV : Form
     {
+        private Manager manager = new Manager();
+
         public Result_DGV()
         {
             InitializeComponent();
@@ -36,28 +38,48 @@ namespace DirectumTestTask
 
         private void Run_BTN_Click(object sender, EventArgs e)
         {
-            List<Executor> rkkList = Parser.Parse(RkkOpenFileDialog.FileName);
-            List<Executor> appealList = Parser.Parse(AppealOpenFileDialog.FileName);
-
-            var rkkResult = rkkList
-                .GroupBy(executor => executor.InitialsFullName)
-                .Select(group => new { Name = group.Key, Count = group.Count(), SecondCount = 0 });
-
-            var appealResult = appealList
-                .GroupBy(executor => executor.InitialsFullName)
-                .Select(group => new { Name = group.Key, Count = 0, SecondCount = group.Count() });
-
-            var result = rkkResult
-                .Concat(appealResult)
-                .GroupBy(executor => executor.Name)
-                .Select(group => new { Name = group.Key, Count = group.Sum(item => item.Count), SecondCount = group.Sum(item => item.SecondCount) });
-
-            int index = 1;
-
-            foreach (var executor in result)
+            try
             {
-                dataGridView1.Rows.Add(index++, executor.Name, executor.Count, executor.SecondCount, executor.Count + executor.SecondCount);
+                if (RkkOpenFileDialog.FileName == String.Empty)
+                {
+                    throw new Exception("Выберите РКК файл");
+                }
+
+                if (AppealOpenFileDialog.FileName == String.Empty)
+                {
+                    throw new Exception("Выберите файл с обращениями");
+                }
+
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+
+                List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+
+                int index = 1;
+                dataGridView1.Rows.Clear();
+                foreach (ExecutorItem executorItem in result)
+                {
+                    dataGridView1.Rows.Add(
+                        index++,
+                        executorItem.Executor.InitialsFullName,
+                        executorItem.RkkCount,
+                        executorItem.AppealCount,
+                        executorItem.RkkCount + executorItem.AppealCount);
+                }
+
+                stopWatch.Stop();
+                TaskTime_TB.Text = stopWatch.Elapsed.ToString();
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void UploadReport_BTN_Click(object sender, EventArgs e)
+        {
+            List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+            TextReporter.Report(result);         
         }
     }
 }

@@ -46,6 +46,8 @@ namespace DirectumTestTask
             this.Run_BTN = new System.Windows.Forms.Button();
             this.UploadReport_BTN = new System.Windows.Forms.Button();
             this.AppealOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TaskTime_TB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,7 +134,7 @@ namespace DirectumTestTask
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(790, 665);
+            this.dataGridView1.Size = new System.Drawing.Size(656, 508);
             this.dataGridView1.TabIndex = 6;
             // 
             // number
@@ -188,16 +190,36 @@ namespace DirectumTestTask
             this.UploadReport_BTN.TabIndex = 8;
             this.UploadReport_BTN.Text = "Выгрузить отчет";
             this.UploadReport_BTN.UseVisualStyleBackColor = true;
+            this.UploadReport_BTN.Click += new System.EventHandler(this.UploadReport_BTN_Click);
             // 
             // AppealOpenFileDialog
             // 
             this.AppealOpenFileDialog.Filter = "Текстовые файлы(*.txt)|*.txt";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 589);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(105, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Время выполнения";
+            // 
+            // TaskTime_TB
+            // 
+            this.TaskTime_TB.Enabled = false;
+            this.TaskTime_TB.Location = new System.Drawing.Point(123, 586);
+            this.TaskTime_TB.Name = "TaskTime_TB";
+            this.TaskTime_TB.Size = new System.Drawing.Size(97, 20);
+            this.TaskTime_TB.TabIndex = 10;
+            // 
             // Result_DGV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 749);
+            this.ClientSize = new System.Drawing.Size(683, 609);
+            this.Controls.Add(this.TaskTime_TB);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.UploadReport_BTN);
             this.Controls.Add(this.Run_BTN);
             this.Controls.Add(this.dataGridView1);
@@ -234,6 +256,8 @@ namespace DirectumTestTask
         private System.Windows.Forms.Button Run_BTN;
         private System.Windows.Forms.Button UploadReport_BTN;
         private System.Windows.Forms.OpenFileDialog AppealOpenFileDialog;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TaskTime_TB;
     }
 }
 

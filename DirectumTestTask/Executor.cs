@@ -4,11 +4,11 @@ namespace DirectumTestTask
 {
     class Executor
     {
-        private string Name { get; }
+        public string Name { get; }
 
-        private string Surname { get; }
+        public string Surname { get; }
 
-        private string Patronymic { get; }
+        public string Patronymic { get; }
 
         public Executor(string name, string surname, string patronymic)
         {
@@ -17,6 +17,6 @@ namespace DirectumTestTask
             this.Patronymic = patronymic;
         }
 
-        public string InitialsFullName => String.Join(" ", Surname, Name[0], Patronymic[0]);
+        public string InitialsFullName => String.Join(" ", Surname, Name[0] + "." + Patronymic[0] + ".");
     }
 }
