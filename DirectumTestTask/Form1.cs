@@ -8,7 +8,7 @@ namespace DirectumTestTask
 {
     public partial class Result_DGV : Form
     {
-        private Manager manager = new Manager();
+        private readonly Manager manager = new Manager();
 
         public Result_DGV()
         {
@@ -50,24 +50,16 @@ namespace DirectumTestTask
                     throw new Exception("Выберите файл с обращениями");
                 }
 
+                //Programm result timer
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
 
                 List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
 
-                int index = 1;
-                dataGridView1.Rows.Clear();
-                foreach (ExecutorItem executorItem in result)
-                {
-                    dataGridView1.Rows.Add(
-                        index++,
-                        executorItem.Executor.InitialsFullName,
-                        executorItem.RkkCount,
-                        executorItem.AppealCount,
-                        executorItem.RkkCount + executorItem.AppealCount);
-                }
+                FillDataGridView(result);
 
                 stopWatch.Stop();
+
                 TaskTime_TB.Text = stopWatch.Elapsed.ToString();
             }
             catch (Exception exception)
@@ -90,12 +82,31 @@ namespace DirectumTestTask
                     throw new Exception("Выберите файл с обращениями");
                 }
 
-                List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
-                TextReporter.Report(result);
+                if (ReportSaveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+                    TextReporter.Report(result, ReportSaveFileDialog.FileName);
+                }
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void FillDataGridView(List<ExecutorItem> list)
+        {
+            dataGridView.Rows.Clear();
+
+            int index = 1;
+            foreach (ExecutorItem executorItem in list)
+            {
+                dataGridView.Rows.Add(
+                    index++,
+                    executorItem.Executor.InitialsFullName,
+                    executorItem.RkkCount,
+                    executorItem.AppealCount,
+                    executorItem.Sum);
             }
         }
     }

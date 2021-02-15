@@ -16,5 +16,7 @@ namespace DirectumTestTask
             this.RkkCount = rkk;
             this.AppealCount = appeals;
         }
+
+        public int Sum => RkkCount + AppealCount;
     }
 }
