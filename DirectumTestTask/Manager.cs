@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections.Generic;
 
 namespace DirectumTestTask
 {
@@ -23,6 +23,26 @@ namespace DirectumTestTask
                 .GroupBy(executor => executor.Executor.InitialsFullName)
                 .Select(group => new ExecutorItem(group.First().Executor, group.Sum(item => item.Count), group.Sum(item => item.SecondCount)))
                 .ToList();
+        }
+
+        public List<ExecutorItem> ResultOrderDescBySurname(string rkkPath, string appealPath)
+        {
+            return Result(rkkPath, appealPath).OrderByDescending(item => item.Executor.Surname).ToList();
+        }
+
+        public List<ExecutorItem> ResultOrderDescByRkkCount(string rkkPath, string appealPath)
+        {
+            return Result(rkkPath, appealPath).OrderByDescending(item => item.RkkCount).ToList();
+        }
+
+        public List<ExecutorItem> ResultOrderDescByAppealCount(string rkkPath, string appealPath)
+        {
+            return Result(rkkPath, appealPath).OrderByDescending(item => item.AppealCount).ToList();
+        }
+
+        public List<ExecutorItem> ResultOrderDescBySum(string rkkPath, string appealPath)
+        {
+            return Result(rkkPath, appealPath).OrderByDescending(item => item.Sum).ToList();
         }
     }
 }

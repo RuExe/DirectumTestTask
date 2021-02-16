@@ -29,7 +29,7 @@ namespace DirectumTestTask
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Rkk_TB = new System.Windows.Forms.TextBox();
@@ -49,7 +49,13 @@ namespace DirectumTestTask
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.ReportSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.OrderBySum_RB = new System.Windows.Forms.RadioButton();
+            this.OrderByAppealCount_RB = new System.Windows.Forms.RadioButton();
+            this.OrderByRkkCount_RB = new System.Windows.Forms.RadioButton();
+            this.OrderBySurname_RB = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.GroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -114,7 +120,7 @@ namespace DirectumTestTask
             // 
             // Run_BTN
             // 
-            this.Run_BTN.Location = new System.Drawing.Point(541, 13);
+            this.Run_BTN.Location = new System.Drawing.Point(713, 137);
             this.Run_BTN.Name = "Run_BTN";
             this.Run_BTN.Size = new System.Drawing.Size(127, 23);
             this.Run_BTN.TabIndex = 7;
@@ -124,7 +130,7 @@ namespace DirectumTestTask
             // 
             // UploadReport_BTN
             // 
-            this.UploadReport_BTN.Location = new System.Drawing.Point(541, 42);
+            this.UploadReport_BTN.Location = new System.Drawing.Point(713, 166);
             this.UploadReport_BTN.Name = "UploadReport_BTN";
             this.UploadReport_BTN.Size = new System.Drawing.Size(127, 23);
             this.UploadReport_BTN.TabIndex = 8;
@@ -192,14 +198,14 @@ namespace DirectumTestTask
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.number,
@@ -219,11 +225,69 @@ namespace DirectumTestTask
             this.ReportSaveFileDialog.FileName = "Тестовое задание - результат работы программы";
             this.ReportSaveFileDialog.Filter = "Текстовые файлы(*.txt)|*.txt";
             // 
+            // GroupBox
+            // 
+            this.GroupBox.Controls.Add(this.OrderBySum_RB);
+            this.GroupBox.Controls.Add(this.OrderByAppealCount_RB);
+            this.GroupBox.Controls.Add(this.OrderByRkkCount_RB);
+            this.GroupBox.Controls.Add(this.OrderBySurname_RB);
+            this.GroupBox.Location = new System.Drawing.Point(675, 12);
+            this.GroupBox.Name = "GroupBox";
+            this.GroupBox.Size = new System.Drawing.Size(199, 119);
+            this.GroupBox.TabIndex = 11;
+            this.GroupBox.TabStop = false;
+            this.GroupBox.Text = "Сортировка";
+            // 
+            // OrderBySum_RB
+            // 
+            this.OrderBySum_RB.AutoSize = true;
+            this.OrderBySum_RB.Location = new System.Drawing.Point(6, 88);
+            this.OrderBySum_RB.Name = "OrderBySum_RB";
+            this.OrderBySum_RB.Size = new System.Drawing.Size(117, 17);
+            this.OrderBySum_RB.TabIndex = 15;
+            this.OrderBySum_RB.TabStop = true;
+            this.OrderBySum_RB.Text = "По общему кол-ву";
+            this.OrderBySum_RB.UseVisualStyleBackColor = true;
+            // 
+            // OrderByAppealCount_RB
+            // 
+            this.OrderByAppealCount_RB.AutoSize = true;
+            this.OrderByAppealCount_RB.Location = new System.Drawing.Point(6, 65);
+            this.OrderByAppealCount_RB.Name = "OrderByAppealCount_RB";
+            this.OrderByAppealCount_RB.Size = new System.Drawing.Size(107, 17);
+            this.OrderByAppealCount_RB.TabIndex = 14;
+            this.OrderByAppealCount_RB.TabStop = true;
+            this.OrderByAppealCount_RB.Text = "По обращениям";
+            this.OrderByAppealCount_RB.UseVisualStyleBackColor = true;
+            // 
+            // OrderByRkkCount_RB
+            // 
+            this.OrderByRkkCount_RB.AutoSize = true;
+            this.OrderByRkkCount_RB.Location = new System.Drawing.Point(6, 42);
+            this.OrderByRkkCount_RB.Name = "OrderByRkkCount_RB";
+            this.OrderByRkkCount_RB.Size = new System.Drawing.Size(63, 17);
+            this.OrderByRkkCount_RB.TabIndex = 13;
+            this.OrderByRkkCount_RB.TabStop = true;
+            this.OrderByRkkCount_RB.Text = "По РКК";
+            this.OrderByRkkCount_RB.UseVisualStyleBackColor = true;
+            // 
+            // OrderBySurname_RB
+            // 
+            this.OrderBySurname_RB.AutoSize = true;
+            this.OrderBySurname_RB.Location = new System.Drawing.Point(6, 19);
+            this.OrderBySurname_RB.Name = "OrderBySurname_RB";
+            this.OrderBySurname_RB.Size = new System.Drawing.Size(88, 17);
+            this.OrderBySurname_RB.TabIndex = 12;
+            this.OrderBySurname_RB.TabStop = true;
+            this.OrderBySurname_RB.Text = "По фамилии";
+            this.OrderBySurname_RB.UseVisualStyleBackColor = true;
+            // 
             // Result_DGV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 609);
+            this.ClientSize = new System.Drawing.Size(886, 609);
+            this.Controls.Add(this.GroupBox);
             this.Controls.Add(this.TaskTime_TB);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.UploadReport_BTN);
@@ -239,6 +303,8 @@ namespace DirectumTestTask
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.GroupBox.ResumeLayout(false);
+            this.GroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,6 +331,11 @@ namespace DirectumTestTask
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.SaveFileDialog ReportSaveFileDialog;
+        private System.Windows.Forms.GroupBox GroupBox;
+        private System.Windows.Forms.RadioButton OrderBySum_RB;
+        private System.Windows.Forms.RadioButton OrderByAppealCount_RB;
+        private System.Windows.Forms.RadioButton OrderByRkkCount_RB;
+        private System.Windows.Forms.RadioButton OrderBySurname_RB;
     }
 }
 

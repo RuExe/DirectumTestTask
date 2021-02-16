@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DirectumTestTask
 {
@@ -22,7 +23,7 @@ namespace DirectumTestTask
 
         private void Rkk_BTN_Click(object sender, EventArgs e)
         {
-            if (RkkOpenFileDialog.ShowDialog() == DialogResult.OK)
+            if (RkkOpenFileDialog.ShowDialog().Equals(DialogResult.OK))
             {
                 Rkk_TB.Text = Path.GetFileName(RkkOpenFileDialog.FileName);
             }
@@ -30,7 +31,7 @@ namespace DirectumTestTask
 
         private void Appeal_BTN_Click(object sender, EventArgs e)
         {
-            if (AppealOpenFileDialog.ShowDialog() == DialogResult.OK)
+            if (AppealOpenFileDialog.ShowDialog().Equals(DialogResult.OK))
             {
                 Appeal_TB.Text = Path.GetFileName(AppealOpenFileDialog.FileName);
             }
@@ -40,12 +41,12 @@ namespace DirectumTestTask
         {
             try
             {
-                if (RkkOpenFileDialog.FileName == String.Empty)
+                if (RkkOpenFileDialog.FileName.Equals(String.Empty))
                 {
                     throw new Exception("Выберите РКК файл");
                 }
 
-                if (AppealOpenFileDialog.FileName == String.Empty)
+                if (AppealOpenFileDialog.FileName.Equals(String.Empty))
                 {
                     throw new Exception("Выберите файл с обращениями");
                 }
@@ -54,8 +55,7 @@ namespace DirectumTestTask
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
 
-                List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
-
+                List<ExecutorItem> result = GetResultBySelectedOrder();
                 FillDataGridView(result);
 
                 stopWatch.Stop();
@@ -72,19 +72,20 @@ namespace DirectumTestTask
         {
             try
             {
-                if (RkkOpenFileDialog.FileName == String.Empty)
+                if (RkkOpenFileDialog.FileName.Equals(String.Empty))
                 {
                     throw new Exception("Выберите РКК файл");
                 }
 
-                if (AppealOpenFileDialog.FileName == String.Empty)
+                if (AppealOpenFileDialog.FileName.Equals(String.Empty))
                 {
                     throw new Exception("Выберите файл с обращениями");
                 }
 
-                if (ReportSaveFileDialog.ShowDialog() == DialogResult.OK)
+                if (ReportSaveFileDialog.ShowDialog().Equals(DialogResult.OK))
                 {
-                    List<ExecutorItem> result = manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+                    List<ExecutorItem> result = GetResultBySelectedOrder();
+
                     TextReporter.Report(result, ReportSaveFileDialog.FileName);
                 }
             }
@@ -107,6 +108,25 @@ namespace DirectumTestTask
                     executorItem.RkkCount,
                     executorItem.AppealCount,
                     executorItem.Sum);
+            }
+        }
+
+        private List<ExecutorItem> GetResultBySelectedOrder()
+        {
+            RadioButton rbChecked = GroupBox.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked);
+            
+            switch (rbChecked?.Name ?? "")
+            {
+                case "OrderBySurname_RB":
+                    return manager.ResultOrderDescBySurname(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+                case "OrderByRkkCount_RB":
+                    return manager.ResultOrderDescByRkkCount(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+                case "OrderByAppealCount_RB":
+                    return manager.ResultOrderDescByAppealCount(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+                case "OrderBySum_RB":
+                    return manager.ResultOrderDescBySum(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+                default:
+                    return manager.Result(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
             }
         }
     }
