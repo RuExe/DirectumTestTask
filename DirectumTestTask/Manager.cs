@@ -25,24 +25,35 @@ namespace DirectumTestTask
                 .ToList();
         }
 
-        public List<ExecutorItem> ResultOrderDescBySurname(string rkkPath, string appealPath)
+        public List<ExecutorItem> ResultOrderBySurname(string rkkPath, string appealPath)
         {
-            return Result(rkkPath, appealPath).OrderByDescending(item => item.Executor.Surname).ToList();
+            return Result(rkkPath, appealPath)
+                .OrderBy(item => item.Executor.Surname)
+                .ToList();
         }
 
         public List<ExecutorItem> ResultOrderDescByRkkCount(string rkkPath, string appealPath)
         {
-            return Result(rkkPath, appealPath).OrderByDescending(item => item.RkkCount).ToList();
+            return Result(rkkPath, appealPath)
+                .OrderByDescending(item => item.RkkCount)
+                .ThenByDescending(item => item.AppealCount)
+                .ToList();
         }
 
         public List<ExecutorItem> ResultOrderDescByAppealCount(string rkkPath, string appealPath)
         {
-            return Result(rkkPath, appealPath).OrderByDescending(item => item.AppealCount).ToList();
+            return Result(rkkPath, appealPath)
+                .OrderByDescending(item => item.AppealCount)
+                .ThenByDescending(item => item.RkkCount)
+                .ToList();
         }
 
         public List<ExecutorItem> ResultOrderDescBySum(string rkkPath, string appealPath)
         {
-            return Result(rkkPath, appealPath).OrderByDescending(item => item.Sum).ToList();
+            return Result(rkkPath, appealPath)
+                .OrderByDescending(item => item.Sum)
+                .ThenByDescending(item => item.RkkCount)
+                .ToList();
         }
     }
 }

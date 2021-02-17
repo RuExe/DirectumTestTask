@@ -118,7 +118,7 @@ namespace DirectumTestTask
             switch (rbChecked?.Name ?? "")
             {
                 case "OrderBySurname_RB":
-                    return manager.ResultOrderDescBySurname(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
+                    return manager.ResultOrderBySurname(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
                 case "OrderByRkkCount_RB":
                     return manager.ResultOrderDescByRkkCount(RkkOpenFileDialog.FileName, AppealOpenFileDialog.FileName);
                 case "OrderByAppealCount_RB":
